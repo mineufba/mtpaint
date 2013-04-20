@@ -40,7 +40,7 @@ paint.replace = function(user, position, replace, replacer)
 end
 
 --tools
-minetest.register_tool("paint:eraser", {
+minetest.register_tool("mtpaint:eraser", {
 	description = "Eraser",
 	inventory_image = "paint_eraser.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -50,7 +50,7 @@ minetest.register_tool("paint:eraser", {
 	end,
 })
 
-minetest.register_tool("paint:pencil", {
+minetest.register_tool("mtpaint:pencil", {
 	description = "Pencil",
 	inventory_image = "paint_pencil.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -75,7 +75,7 @@ minetest.register_tool("paint:pencil", {
 	end,
 })
 
-minetest.register_tool("paint:picker", {
+minetest.register_tool("mtpaint:picker", {
 	description = "Picker",
 	inventory_image = "paint_picker.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -110,7 +110,7 @@ minetest.register_tool("paint:picker", {
 	end,
 })
 
-minetest.register_tool("paint:fill", {
+minetest.register_tool("mtpaint:fill", {
 	description = "Fill",
 	inventory_image = "paint_fill.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -135,7 +135,7 @@ minetest.register_tool("paint:fill", {
 })
 
 --[[WIP
-minetest.register_tool("paint:select_square", {
+minetest.register_tool("mtpaint:select_square", {
 	description = "Square selection",
 	inventory_image = "paint_select_square.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -145,7 +145,7 @@ minetest.register_tool("paint:select_square", {
 	end,
 })
 
-minetest.register_tool("paint:select_ellipse", {
+minetest.register_tool("mtpaint:select_ellipse", {
 	description = "Ellipse selection",
 	inventory_image = "paint_select_ellipse.png",
 	on_use = function(itemstack, user, pointed_thing)
