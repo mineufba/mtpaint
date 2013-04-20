@@ -81,6 +81,7 @@ minetest.register_tool("mtpaint:picker", {
 	on_use = function(itemstack, user, pointed_thing)
 		if pointed_thing then
 			local node = minetest.env:get_node(pointed_thing.under).name
+			if node == nil or node == "ignore" then return end
 			local oldnode = user:get_inventory():get_stack("main", 1):get_name()
 			local stack = ItemStack(oldnode)
 			local inv = user:get_inventory()
@@ -96,6 +97,7 @@ minetest.register_tool("mtpaint:picker", {
 	on_place = function(self, user, pointed_thing)
 		if pointed_thing then
 			local node = minetest.env:get_node(pointed_thing.under).name
+			if node == nil or node == "ignore" then return end
 			local oldnode = user:get_inventory():get_stack("main", 2):get_name()
 			local stack = ItemStack(oldnode)
 			local inv = user:get_inventory()
