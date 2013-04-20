@@ -1,0 +1,21 @@
+ _______  _______  __    _  _______  ___   ___     
+|       ||       ||  |  | ||       ||   | |   |    
+|    _  ||    ___||   |_| ||       ||   | |   |    
+|   |_| ||   |___ |       ||       ||   | |   |    
+|    ___||    ___||  _    ||      _||   | |   |___ 
+|   |    |   |___ | | |   ||     |_ |   | |       |
+|___|    |_______||_|  |__||_______||___| |_______|
+
+BY:             bas080
+DESCRIPTION:    Image editor style world editing
+VERSION:        0.1
+LICENCE:        WTFPL
+FORUM:          http://forum.minetest.net/viewtopic.php?id=4542
+
+Changelog
+---------
+0.1
+Eraser for removing all nodes that can be pointed at
+Set node #1 with the picker on left click or set node #2 on right click
+Pencil which draws on and over nodes with node #1 or node #2 (hold down shift to draw over a node)
+Bucket/Fill to replace similar nodes that connect with the #1 or #2 color
