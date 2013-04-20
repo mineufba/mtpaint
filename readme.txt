@@ -10,7 +10,12 @@ BY:             bas080
 DESCRIPTION:    Image editor style world editing
 VERSION:        0.1
 LICENCE:        WTFPL
-FORUM:          http://forum.minetest.net/viewtopic.php?id=4542
+FORUM:          http://forum.minetest.net/viewtopic.php?pid=85190
+
+Future Features
+---------------
+Selection tools
+Improved bucket function to fill selection
 
 Changelog
 ---------
