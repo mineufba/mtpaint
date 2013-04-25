@@ -23,6 +23,7 @@ Changelog
 0.3
 * Primary bucket function to only fill the top(visible) nodes
 * Holding shift while using bucket fills nodes that also are not visible
+* Bugfix that checks if replacer node is really a node
 
 0.2
 * Fixed check if pointed thing is a node (bug)

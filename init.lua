@@ -45,6 +45,7 @@ end
 
 paint.replace = function(user, position, replace, replacer, full)
   
+  if not minetest.registered_nodes[replacer] then return end
   if replace == replacer then return end
   if paint.loops > 2000 then return end
   local pos = position
@@ -74,7 +75,6 @@ paint.replace = function(user, position, replace, replacer, full)
       paint.replace(user,p, replace, replacer, full)
     end
   end
-  
   for i=-1,1,2 do
     local p = {x=pos.x, y=pos.y, z=pos.z+i}
     local n = minetest.env:get_node(p).name
