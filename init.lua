@@ -52,7 +52,7 @@ paint.replace = function(user, position, replace, replacer, full)
   if paint.loops > 2000 then return end
   local pos = position
   if full == false then
-   if paint.has_air(pos) == false then return end
+  if paint.has_air(pos) == false then return end
   end
   paint.loops = paint.loops + 1
 
@@ -94,7 +94,7 @@ paint.replace_column = function(user, position, replace, replacer, full)
   if paint.loops > 2000 then return end
   local pos = position
   if full == false then
-   if paint.has_air(pos) == false then return end
+   --if paint.has_air(pos) == false then return end
   end
   paint.loops = paint.loops + 1
 
@@ -119,7 +119,7 @@ paint.replace_row = function(user, position, replace, replacer, full, direction)
   if paint.loops > 2000 then return end
   local pos = position
   if full == false then
-   if paint.has_air(pos) == false then return end
+   --if paint.has_air(pos) == false then return end
   end
   paint.loops = paint.loops + 1
 
@@ -188,11 +188,6 @@ minetest.register_tool("mtpaint:picker", {
       local stack = ItemStack(oldnode)
       local inv = user:get_inventory()
       inv:set_stack("main", 1, node)
-
-
-      minetest.chat_send_all(user:get_look_horizontal())
-
-
       if inv:contains_item("main", oldnode) then
       else
         if inv:room_for_item("main", stack) then
