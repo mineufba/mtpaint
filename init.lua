@@ -58,13 +58,12 @@ paint.replace = function(user, position, replace, replacer, full)
 
   local node = replacer
   
-  minetest.env:set_node(pos,{name=node})
+  rollback.set_node(user, pos,{name=node})
     
   for i=-1,1,2 do
     local p = {x=pos.x+i, y=pos.y, z=pos.z}
     local n = minetest.env:get_node(p).name
     if n == replace then
-      minetest.env:set_node(pos,{name=node})
       paint.replace(user,p, replace, replacer, full)
     end
   end
@@ -73,7 +72,6 @@ paint.replace = function(user, position, replace, replacer, full)
     local p = {x=pos.x, y=pos.y+i, z=pos.z}
     local n = minetest.env:get_node(p).name
   if n == replace then
-      minetest.env:set_node(pos,{name=node})
       paint.replace(user,p, replace, replacer, full)
     end
   end
@@ -81,7 +79,6 @@ paint.replace = function(user, position, replace, replacer, full)
     local p = {x=pos.x, y=pos.y, z=pos.z+i}
     local n = minetest.env:get_node(p).name
     if n == replace then
-      minetest.env:set_node(pos,{name=node})
       paint.replace(user,p, replace, replacer, full)
     end
   end
@@ -91,6 +88,11 @@ paint.replace_column = function(user, position, replace, replacer, full)
   
   if not minetest.registered_nodes[replacer] then return end
   if replace == replacer then return end
+
+  local node = minetest.get_node(position).name
+
+  if (node ~= replace) then return end
+
   if paint.loops > 2000 then return end
   local pos = position
   if full == false then
@@ -100,13 +102,12 @@ paint.replace_column = function(user, position, replace, replacer, full)
 
   local node = replacer
   
-  minetest.set_node(pos,{name=node})
+  rollback.set_node(user, pos, {name=node})
     
   for i=-1,1,2 do
     local p = {x=pos.x, y=pos.y+i, z=pos.z}
     local n = minetest.get_node(p).name
   if n == replace then
-      minetest.set_node(pos,{name=node})
       paint.replace_column(user,p, replace, replacer, full)
     end
   end
@@ -127,14 +128,13 @@ paint.replace_row = function(user, position, replace, replacer, full, direction)
 
   local dir = direction
   
-  minetest.env:set_node(pos,{name=node})
+  rollback.set_node(user, pos,{name=node})
     
   for i=-1,1,2 do
     local p = {x=pos.x+(i * dir.x), y=pos.y, z=pos.z+(i * dir.z)}
     local n = minetest.env:get_node(p).name
     if n == replace then
-      minetest.env:set_node(pos,{name=node})
-      paint.replace_row(user,p, replace, replacer, full, dir)
+      paint.replace_row(user, p, replace, replacer, full, dir)
     end
   end
 end
@@ -269,6 +269,8 @@ minetest.register_tool("mtpaint:fill", {
       
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
 
+      rollback.used_tool(user)
+
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
       local replacer = user:get_inventory():get_stack("main", 1):get_name()
@@ -285,6 +287,8 @@ minetest.register_tool("mtpaint:fill", {
     if pointed_thing.type == "node" then
       
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
+
+      rollback.used_tool(user)
 
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
@@ -309,6 +313,8 @@ minetest.register_tool("mtpaint:fill_column", {
       
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
 
+      rollback.used_tool(user)
+
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
       local replacer = user:get_inventory():get_stack("main", 1):get_name()
@@ -325,6 +331,8 @@ minetest.register_tool("mtpaint:fill_column", {
     if pointed_thing.type == "node" then
       
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
+
+      rollback.used_tool(user)
 
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
@@ -348,6 +356,8 @@ minetest.register_tool("mtpaint:fill_row", {
     if pointed_thing.type == "node" then
 
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
+
+      rollback.used_tool(user)
 
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
@@ -379,6 +389,8 @@ minetest.register_tool("mtpaint:fill_row", {
     if pointed_thing.type == "node" then
 
       if (not base_functions.canPlayerPlaceAt(user, pointed_thing.under)) then return end
+
+      rollback.used_tool(user)
 
       local pos = pointed_thing.under
       local replace = minetest.env:get_node(pos).name
